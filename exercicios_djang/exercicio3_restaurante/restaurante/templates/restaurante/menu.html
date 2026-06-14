@@ -1,0 +1,19 @@
+<h1>Restaurantes:</h1>
+{% for restaurante in restaurantes %}
+<h2>{{ restaurante.nome }} — {{ restaurante.localizacao }}
+    (cap. {{ restaurante.capacidade }})</h2>
+{% for categoria in categorias %}
+  {% with pratos=restaurante.pratos.all %}
+  {% if pratos %}
+  <strong>{{ categoria.nome }}:</strong>
+  <ul>
+  {% for prato in pratos %}
+    {% if prato.categoria == categoria %}
+    <li>{{ prato.nome }}</li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+{% endfor %}
+{% endfor %}

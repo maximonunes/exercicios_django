@@ -1,0 +1,19 @@
+<h1>Projetos:</h1>
+<ul>
+{% for projeto in projetos %}
+  <li><strong>{{ projeto.titulo }}</strong>
+      (coord. {{ projeto.coordenador.nome }}) — início: {{ projeto.data_inicio }}
+    <p>{{ projeto.resumo }}</p>
+    <em>Equipa:</em>
+    {% for p in projeto.pesquisadores.all %}{{ p.nome }}{% if not forloop.last %}, {% endif %}{% endfor %}
+    <ul>
+    {% for e in projeto.entregaveis.all %}
+      <li>{{ e.tipo }} — {{ e.data_entrega }} —
+          <a href="{{ e.link }}" target="_blank">link</a></li>
+    {% empty %}
+      <li><em>Sem entregáveis.</em></li>
+    {% endfor %}
+    </ul>
+  </li>
+{% endfor %}
+</ul>

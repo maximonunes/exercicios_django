@@ -1,0 +1,19 @@
+<h1>Pesquisadores:</h1>
+<ul>
+{% for p in pesquisadores %}
+  <li><strong>{{ p.nome }}</strong>
+    <ul>
+      <li>Coordena:
+        {% for proj in p.projetos_coordenados.all %}
+          {{ proj.titulo }}{% if not forloop.last %}, {% endif %}
+        {% empty %}(nenhum){% endfor %}
+      </li>
+      <li>Associado a:
+        {% for proj in p.projetos_associados.all %}
+          {{ proj.titulo }}{% if not forloop.last %}, {% endif %}
+        {% empty %}(nenhum){% endfor %}
+      </li>
+    </ul>
+  </li>
+{% endfor %}
+</ul>

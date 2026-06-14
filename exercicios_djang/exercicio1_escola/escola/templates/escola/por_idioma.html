@@ -1,0 +1,20 @@
+<h1>Escola de Idiomas:</h1>
+<ul>
+{% for idioma in idiomas %}
+  <li>{{ idioma.nome }}
+    <ul>
+    {% for curso in idioma.cursos.all %}
+      <li>{{ curso.nome }} (Prof. {{ curso.professor.nome }})
+        <ul>
+        {% for estudante in curso.estudantes.all %}
+          <li>{{ estudante.nome }}</li>
+        {% empty %}
+          <li><em>Sem estudantes inscritos.</em></li>
+        {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+    </ul>
+  </li>
+{% endfor %}
+</ul>

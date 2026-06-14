@@ -1,0 +1,16 @@
+<h1>Reservas:</h1>
+<ul>
+{% for restaurante in restaurantes %}
+  <li><strong>{{ restaurante.nome }}</strong>
+    <ul>
+    {% for reserva in restaurante.reservas.all %}
+      <li>{{ reserva.data }} {{ reserva.hora }}
+          — {{ reserva.cliente.nome }}
+          — {{ reserva.num_pessoas }} pessoas</li>
+    {% empty %}
+      <li><em>Sem reservas.</em></li>
+    {% endfor %}
+    </ul>
+  </li>
+{% endfor %}
+</ul>
